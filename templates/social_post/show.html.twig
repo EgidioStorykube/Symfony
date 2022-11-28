@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post - {{socialPost.title}}{% endblock %}
+
+{% block body %}
+
+    <h1>{{socialPost.title}}</h1>
+    <p>{{socialPost.text}}</p>
+    <div style="color:#c1c1c1">
+        {% if date(socialPost.created) < date('-1year')%}
+            Older Than 1 Year
+        {% else %}
+            {{ socialPost.created|date('d/m/Y') }}
+        {% endif %}
+    </div>
+
+{% endblock %}
