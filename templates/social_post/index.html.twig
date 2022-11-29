@@ -9,7 +9,7 @@
             {% for post in socialPosts %}
                 <div>
                     <a href="{{path('app_social_post_show', {socialPost:post.id})}}">{{post.title}}</a>
-                    {{post.title}}
+                    {{post.text}}
                 </div>
             {% endfor %}
         {% else %}
