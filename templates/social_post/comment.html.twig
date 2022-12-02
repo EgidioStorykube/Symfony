@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post - Add Comment{% endblock %}
+
+{%  block bread %}
+-> Post Comment
+{%  endblock %}
+
+{% block body %}
+
+    <h1>{{socialPost.title}}</h1>
+    <p>{{socialPost.text}}</p>
+    <div style="color:#c1c1c1">
+        {% if date(socialPost.created) < date('-1year')%}
+            Older Than 1 Year
+        {% else %}
+            {{ socialPost.created|date('d/m/Y') }}
+        {% endif %}
+    </div>
+
+    {{form_start(form)}}
+    <div>
+        {{form_label(form.text, 'Please enter the Comment text')}}
+        {{form_widget(form.text)}}
+        {{ form_errors(form)}}
+    </div>
+
+        <button type="submit">Add Comment</button>
+
+{{form_end(form)}}
+
+
+{% endblock %}

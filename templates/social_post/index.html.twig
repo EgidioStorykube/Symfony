@@ -3,17 +3,30 @@
 {% block title %}All Posts{% endblock %}
 
 {% block body %}
+    <h1 class="d-flex text-primary justify-content-center my-5">My Social - Read Post</h1>
 
     <div>
         {% if socialPosts|length > 0 %}
-            {% for post in socialPosts %}
-                <div>
-                    <a href="{{path('app_social_post_show', {socialPost:post.id})}}">{{post.title}}</a>
-                    {{post.text}}
-                </div>
-            {% endfor %}
+            <div class="d-flex flex-row flex-wrap">
+                {% for post in socialPosts %}
+                    <div class="d-flex flex-column justify-content-between m-2 p-5 border border-primary rounded-3 col-5">
+                        
+                        <h3>{{post.title}}</h3>
+
+                        <p>{{post.text}}</p>
+
+                        <p>Like<span class="rounded-3 border py-1 px-2 ms-3">0</span></p>
+                        <p>Comment<span class="rounded-3 border py-1 px-2 ms-3">{{post.comments.count}}</span></p>
+                        <div class="d-flex flex-row-reverse mt-3">
+                            <a href="{{path('app_social_post_edit', {socialPost:post.id})}}" class="btn btn-warning mx-1">Edit</a>
+                            <a href="{{path('app_social_post_show', {socialPost:post.id})}}" class="btn btn-primary mx-1">Show</a>
+                            <a href="#" class="btn btn-secondary mx-1">More From This User</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         {% else %}
-            Nothing Here!
+            <p>Nothing Here!</p>
         {% endif %}
     </div>
 
